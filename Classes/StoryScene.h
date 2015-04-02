@@ -12,6 +12,7 @@ public:
 	virtual bool init();
 
 	void menuBackCallback(cocos2d::Ref* pSender);
+	void menuStageCallback(cocos2d::Ref* pSender);
 
 	CREATE_FUNC(StoryScene);
 };

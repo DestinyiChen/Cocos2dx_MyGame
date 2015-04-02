@@ -1,5 +1,6 @@
 #include "HomeScene.h"
 #include "StoryScene.h"
+#include "StageScene.h"
 
 USING_NS_CC;
 
@@ -25,14 +26,25 @@ bool StoryScene::init()
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	auto backItem = MenuItemImage::create(
-		"BackButtonNormal.png",
-		"BackButtonSelected.png",
+		"Menus/BackButtonNormal.png",
+		"Menus/BackButtonSelected.png",
 		CC_CALLBACK_1(StoryScene::menuBackCallback, this));
 
 	backItem->setPosition(Vec2(origin.x + visibleSize.width - backItem->getContentSize().width/2 ,
 		origin.y + backItem->getContentSize().height/2));
 
-	auto menu = Menu::create(backItem, NULL);
+	// Stage
+	auto stageItem = MenuItemImage::create(
+		"Menus/StageButtonNormal.png",
+		"Menus/StageButtonSelected.png",
+		CC_CALLBACK_1(StoryScene::menuStageCallback, this));
+
+	stageItem->setPosition(Vec2(origin.x + visibleSize.width/2,
+		origin.y + visibleSize.height/2));
+
+	//
+
+	auto menu = Menu::create(backItem, stageItem, NULL);
 	menu->setPosition(Vec2::ZERO);
 	this->addChild(menu, 1);
 
@@ -43,7 +55,7 @@ bool StoryScene::init()
 
 	this->addChild(label, 1);
 
-	auto sprite = Sprite::create("StorySceneBG.jpg");
+	auto sprite = Sprite::create("BGs/StorySceneBG.jpg");
 
 	sprite->setScaleX(visibleSize.width/sprite->getContentSize().width);
 	sprite->setScaleY(visibleSize.height/sprite->getContentSize().height);
@@ -60,4 +72,11 @@ void StoryScene::menuBackCallback(Ref* pSender)
 	auto director = Director::getInstance();
 	auto scene = HomeScene::createScene();
 	director->replaceScene(scene);
+}
+
+void StoryScene::menuStageCallback(Ref* pSender)
+{
+	auto director = Director::getInstance();
+	auto scene = StageScene::createScene();
+	director->pushScene(scene);
 }

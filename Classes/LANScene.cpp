@@ -25,8 +25,8 @@ bool LANScene::init()
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	auto backItem = MenuItemImage::create(
-		"BackButtonNormal.png",
-		"BackButtonSelected.png",
+		"Menus/BackButtonNormal.png",
+		"Menus/BackButtonSelected.png",
 		CC_CALLBACK_1(LANScene::menuBackCallback, this));
 
 	backItem->setPosition(Vec2(origin.x + visibleSize.width - backItem->getContentSize().width/2 ,
@@ -43,7 +43,7 @@ bool LANScene::init()
 
 	this->addChild(label, 1);
 
-	auto sprite = Sprite::create("LANSceneBG.jpg");
+	auto sprite = Sprite::create("BGs/LANSceneBG.jpg");
 
 	sprite->setScaleX(visibleSize.width/sprite->getContentSize().width);
 	sprite->setScaleY(visibleSize.height/sprite->getContentSize().height);

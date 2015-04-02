@@ -27,18 +27,18 @@ bool HomeScene::init()
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	auto storyItem = MenuItemImage::create(
-		"StoryButtonNormal.png",
-		"StoryButtonSelected.png",
+		"Menus/StoryButtonNormal.png",
+		"Menus/StoryButtonSelected.png",
 		CC_CALLBACK_1(HomeScene::menuStoryCallback, this));
 
 	auto LANItem = MenuItemImage::create(
-		"LANButtonNormal.png",
-		"LANButtonSelected.png",
+		"Menus/LANButtonNormal.png",
+		"Menus/LANButtonSelected.png",
 		CC_CALLBACK_1(HomeScene::menuLANCallback, this));
 
 	auto onLineItem = MenuItemImage::create(
-		"OnLineButtonNormal.png",
-		"OnLineButtonSelected.png",
+		"Menus/OnLineButtonNormal.png",
+		"Menus/OnLineButtonSelected.png",
 		CC_CALLBACK_1(HomeScene::menuOnLineCallback, this));
 
 	storyItem->setPosition(Vec2(origin.x + visibleSize.width - storyItem->getContentSize().width/2 ,
@@ -61,7 +61,7 @@ bool HomeScene::init()
 
 	this->addChild(label, 1);
 
-	auto sprite = Sprite::create("HomeSceneBG.jpg");
+	auto sprite = Sprite::create("BGs/HomeSceneBG.jpg");
 
 	sprite->setScaleX(visibleSize.width/sprite->getContentSize().width);
 	sprite->setScaleY(visibleSize.height/sprite->getContentSize().height);
