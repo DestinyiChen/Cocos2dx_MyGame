@@ -52,10 +52,10 @@ bool StageScene::init()
 
 	this->addChild(sprite, 0);
 
-	SpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Towers/TArrow-hd.plist", "Towers/TArrow-hd.png");
-	auto towerSprite = Sprite::createWithSpriteFrameName("Arrow00.png");
-	towerSprite->setPosition(ccp(200,200));
-	this->addChild(towerSprite, 1);
+	CCLOG("scheduleOnce");
+
+	round = 0;
+	this->schedule(schedule_selector(StageScene::startRound), 3.0f);
 
 	return true;
 }
@@ -64,4 +64,20 @@ void StageScene::menuBackCallback(Ref* pSender)
 {
 	auto director = Director::getInstance();
 	director->popScene();
+}
+
+void StageScene::startRound(float dt)
+{
+	CCLOG("Round:%d dt:%f", round, dt);
+	if (++round > 10) {
+		this->unschedule(schedule_selector(StageScene::startRound));
+		return;
+	}
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	SpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Towers/TArrow-hd.plist", "Towers/TArrow-hd.png");
+	auto towerSprite = Sprite::createWithSpriteFrameName("Arrow00.png");
+	towerSprite->setPosition(Vec2(round*visibleSize.width/11,round*visibleSize.height/11));
+	this->addChild(towerSprite, 1);
+
+	this->schedule(schedule_selector(StageScene::startRound), 1.0f);
 }
