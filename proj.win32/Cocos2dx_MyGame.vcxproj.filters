@@ -36,6 +36,9 @@
     <ClCompile Include="..\Classes\StageScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\BaseMonster.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -60,6 +63,15 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\StageScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BaseHero.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BaseMonster.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BaseTower.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

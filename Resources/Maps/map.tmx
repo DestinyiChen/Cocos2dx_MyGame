@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="left-down" width="20" height="15" tilewidth="40" tileheight="40" nextobjectid="39">
+ <tileset firstgid="1" name="BG1-hd" tilewidth="40" tileheight="40">
+  <image source="../../../../工作室/素材/保卫萝卜/Themes/Theme1/BG0/BG1-hd.png" width="1024" height="1024"/>
+ </tileset>
+ <tileset firstgid="626" name="BG2-hd" tilewidth="40" tileheight="40">
+  <image source="../../../../工作室/素材/保卫萝卜/Themes/Theme1/BG0/BG2-hd.png" width="1024" height="1024"/>
+ </tileset>
+ <layer name="PathLayer" width="20" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF1AZTmOhnHjl2DQXz8OFRMHIBAAsNCMs=
+  </data>
+ </layer>
+ <objectgroup name="path">
+  <object id="18" name="p1" x="219" y="183"/>
+  <object id="19" name="p2" x="222" y="214"/>
+  <object id="20" name="p4" x="220" y="240"/>
+  <object id="21" name="p4" x="217" y="267"/>
+  <object id="22" name="p5" x="214" y="292"/>
+  <object id="23" name="p6" x="218" y="322"/>
+  <object id="24" name="p7" x="218" y="340"/>
+  <object id="25" name="p8" x="250" y="339"/>
+  <object id="26" name="p9" x="276" y="337"/>
+  <object id="27" name="p10" x="308" y="338"/>
+  <object id="28" name="p11" x="334" y="338"/>
+  <object id="29" name="p12" x="369" y="337"/>
+  <object id="30" name="p13" x="399" y="334"/>
+  <object id="31" name="p14" x="433" y="335"/>
+  <object id="32" name="p15" x="459" y="338"/>
+  <object id="33" name="p17" x="482" y="338"/>
+  <object id="34" name="p18" x="501" y="340"/>
+  <object id="35" name="p19" x="497" y="301"/>
+  <object id="36" name="p20" x="497" y="265"/>
+  <object id="37" name="p21" x="495" y="231"/>
+  <object id="38" name="p22" x="502" y="216"/>
+ </objectgroup>
+</map>

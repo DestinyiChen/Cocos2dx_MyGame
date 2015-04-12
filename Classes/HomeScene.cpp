@@ -77,19 +77,19 @@ void HomeScene::menuStoryCallback(Ref* pSender)
 {
 	auto director = Director::getInstance();
 	auto scene = StoryScene::createScene();
-	director->replaceScene(scene);
+	director->replaceScene(TransitionSlideInR::create(1.0f, scene));
 }
 
 void HomeScene::menuLANCallback(Ref* pSender)
 {
 	auto director = Director::getInstance();
 	auto scene = LANScene::createScene();
-	director->replaceScene(scene);
+	director->replaceScene(TransitionSlideInR::create(1.0f, scene));
 }
 
 void HomeScene::menuOnLineCallback(Ref* pSender)
 {
 	auto director = Director::getInstance();
 	auto scene = OnLineScene::createScene();
-	director->replaceScene(scene);
+	director->replaceScene(TransitionSlideInR::create(1.0f, scene));
 }

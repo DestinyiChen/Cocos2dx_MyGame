@@ -21,8 +21,8 @@ bool StageScene::init()
 		return false;
 	}
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	visibleSize = Director::getInstance()->getVisibleSize();
+	origin = Director::getInstance()->getVisibleOrigin();
 
 	auto backItem = MenuItemImage::create(
 		"Menus/BackButtonNormal.png",
@@ -52,7 +52,8 @@ bool StageScene::init()
 
 	this->addChild(sprite, 0);
 
-	CCLOG("scheduleOnce");
+	initMap();
+	initSpriteFrameCache();
 
 	round = 0;
 	this->schedule(schedule_selector(StageScene::startRound), 3.0f);
@@ -66,18 +67,60 @@ void StageScene::menuBackCallback(Ref* pSender)
 	director->popScene();
 }
 
+void StageScene::initMap()
+{
+	map = TMXTiledMap::create("Maps/map.tmx");
+
+	pathLayer = map->getLayer("PathLayer");
+	pathLayer->setAnchorPoint(Vec2(0.5f, 0.5f));
+	pathLayer->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+
+	path = map->getObjectGroup("path");
+	Node* pathNode = NULL;
+	int count = 0;
+	auto point = path->getObject("p" + count);
+
+	while(point.begin() != point.end())
+	{
+		float x = point.at("x").asFloat();
+		float y = point.at("y").asFloat();
+
+		pathNode = Node::create();
+		pathNode->setPosition(x, y);
+
+		this->pathVector.pushBack(pathNode);
+	}
+
+	pathNode = NULL;
+
+	this->addChild(map, 1);
+}
+
+void StageScene::initSpriteFrameCache()
+{
+	stageSpriteFrameCache = SpriteFrameCache::getInstance();
+
+	// Towers
+	stageSpriteFrameCache->addSpriteFramesWithFile("Towers/TArrow-hd.plist", "Towers/TArrow-hd.png");
+
+	// Monsters
+	stageSpriteFrameCache->addSpriteFramesWithFile("Monsters/Monsters01-hd.plist", "Monsters/Monsters01-hd.png");
+}
+
 void StageScene::startRound(float dt)
 {
-	CCLOG("Round:%d dt:%f", round, dt);
 	if (++round > 10) {
 		this->unschedule(schedule_selector(StageScene::startRound));
 		return;
 	}
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	SpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("Towers/TArrow-hd.plist", "Towers/TArrow-hd.png");
+
 	auto towerSprite = Sprite::createWithSpriteFrameName("Arrow00.png");
-	towerSprite->setPosition(Vec2(round*visibleSize.width/11,round*visibleSize.height/11));
+	towerSprite->setPosition(Vec2(round*visibleSize.width/11, round*visibleSize.height/11));
 	this->addChild(towerSprite, 1);
+
+	auto monsterSprite = Sprite::createWithSpriteFrameName("boss_big01.png");
+	monsterSprite->setPosition(Vec2(round*visibleSize.width/11 + 50, round*visibleSize.height/11 + 50));
+	this->addChild(monsterSprite, 1);
 
 	this->schedule(schedule_selector(StageScene::startRound), 1.0f);
 }

@@ -29,7 +29,7 @@ bool LANScene::init()
 		"Menus/BackButtonSelected.png",
 		CC_CALLBACK_1(LANScene::menuBackCallback, this));
 
-	backItem->setPosition(Vec2(origin.x + visibleSize.width - backItem->getContentSize().width/2 ,
+	backItem->setPosition(Vec2(origin.x + backItem->getContentSize().width/2 ,
 		origin.y + backItem->getContentSize().height/2));
 
 	auto menu = Menu::create(backItem, NULL);
@@ -59,5 +59,5 @@ void LANScene::menuBackCallback(Ref* pSender)
 {
 	auto director = Director::getInstance();
 	auto scene = HomeScene::createScene();
-	director->replaceScene(scene);
+	director->replaceScene(TransitionSlideInL::create(1.0f, scene));
 }
